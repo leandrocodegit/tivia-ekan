@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "ef77ff9a-1531-475d-bd7b-dd6d1f4e6e35",
+		"name": "TIVIA EKAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15603888"
+	},
+	"item": [
+		{
+			"name": "Auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var value = pm.response.json().access_token;\r",
+							"pm.collectionVariables.set(\"TOKEN\", value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"admin\",\r\n    \"senha\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Beneficiario 01\",\r\n    \"telefone\": \"121545454\",\r\n    \"documentos\": [\r\n        {\r\n            \"id\": 1,\r\n            \"descricao\": \"Documento 01\",\r\n            \"tipo-documento\": \"FICHA_CADASTRAL\",\r\n            \"data-inclusao\": \"2024-04-05\",\r\n            \"data-atualizacao\": \"2024-04-05\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"descricao\": \"Documento 02\",\r\n            \"tipo-documento\": \"RECIBO_PAGAMENTO\",\r\n            \"data-inclusao\": \"2024-04-05\",\r\n            \"data-atualizacao\": \"2024-04-05\"\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"descricao\": \"Documento 03\",\r\n            \"tipo-documento\": \"REEBOLSO\",\r\n            \"data-inclusao\": \"2024-04-05\",\r\n            \"data-atualizacao\": \"2024-04-05\"\r\n        }\r\n    ],\r\n    \"data-nascimento\": \"2024-04-05\",\r\n    \"data-inclusao\": \"2024-04-05\",\r\n    \"data-atualizacao\": \"2024-04-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/beneficiario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"beneficiario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista beneficiarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"admin\",\r\n    \"senha\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/beneficiario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"beneficiario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/beneficiario/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"beneficiario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Beneficiario 01\",\r\n    \"telefone\": \"121545454\",\r\n    \"documentos\": [\r\n        {\r\n            \"id\": 1,\r\n            \"descricao\": \"Documento 01\",\r\n            \"tipo-documento\": \"FICHA_CADASTRAL\",\r\n            \"data-inclusao\": \"2024-04-05\",\r\n            \"data-atualizacao\": \"2024-04-05\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"descricao\": \"Documento 02\",\r\n            \"tipo-documento\": \"RECIBO_PAGAMENTO\",\r\n            \"data-inclusao\": \"2024-04-05\",\r\n            \"data-atualizacao\": \"2024-04-05\"\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"descricao\": \"Documento 03\",\r\n            \"tipo-documento\": \"REEBOLSO\",\r\n            \"data-inclusao\": \"2024-04-05\",\r\n            \"data-atualizacao\": \"2024-04-05\"\r\n        }\r\n    ],\r\n    \"data-nascimento\": \"2024-04-05\",\r\n    \"data-inclusao\": \"2024-04-05\",\r\n    \"data-atualizacao\": \"2024-04-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/beneficiario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"beneficiario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/beneficiario/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"beneficiario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

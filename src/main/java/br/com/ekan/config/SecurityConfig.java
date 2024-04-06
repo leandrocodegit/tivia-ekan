@@ -33,7 +33,7 @@ public class SecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 
-        return http.csrf().disable().cors().disable().securityMatcher("/**")
+        return http.csrf().disable().cors().disable().securityMatcher("/")
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/h2/**").permitAll()
                         .requestMatchers("/auth").permitAll()
